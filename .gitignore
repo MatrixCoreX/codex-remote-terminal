@@ -1,0 +1,8 @@
+node_modules/
+__pycache__/
+.venv/
+.codex
+hardware/pico2w/.deps/
+hardware/pico2w/.venv/
+hardware/pico2w/build/
+hardware/pico2w/build-*/

@@ -1,0 +1,157 @@
+<!doctype html>
+<html lang="zh-CN">
+  <head>
+    <meta charset="utf-8" />
+    <meta
+      name="viewport"
+      content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no, viewport-fit=cover"
+    />
+    <title>Codex Remote</title>
+    <link rel="stylesheet" href="/vendor/xterm.css" />
+    <link rel="stylesheet" href="/style.css" />
+  </head>
+  <body>
+    <main class="app-shell">
+      <section class="terminal-card">
+        <div class="terminal-meta">
+          <span class="command-title">
+            <span id="command-status-dot" class="command-status-dot" aria-hidden="true"></span>
+            <span id="command-line">codex</span>
+          </span>
+          <div class="terminal-meta-actions">
+            <span id="terminal-size">-</span>
+            <button class="meta-action" id="toggle-language" type="button">EN</button>
+          </div>
+        </div>
+        <div class="terminal-stage">
+          <pre id="content-log" class="content-log"></pre>
+          <div id="cli-input-strip" class="cli-input-strip" aria-hidden="true">
+            <pre id="cli-input-log" class="cli-input-log">›</pre>
+            <div id="touch-input-preview" class="touch-input-preview" aria-hidden="true">
+              <span class="touch-input-preview-value" id="touch-input-preview-value"></span>
+              <span class="touch-input-preview-caret" aria-hidden="true"></span>
+            </div>
+            <textarea
+              id="touch-input-bridge"
+              class="touch-input-bridge"
+              autocorrect="off"
+              autocapitalize="off"
+              autocomplete="off"
+              spellcheck="false"
+              data-i18n-aria-label="terminal_input_bridge"
+              aria-label="Terminal Input Bridge"
+            ></textarea>
+          </div>
+          <div id="terminal"></div>
+        </div>
+      </section>
+
+      <section class="composer-card">
+        <div class="composer-row">
+          <span class="composer-prompt">›</span>
+          <textarea
+            id="composer-input"
+            class="composer-input"
+            data-i18n-placeholder="composer_placeholder"
+            placeholder="给 Codex 发一句话，回车发送"
+            spellcheck="false"
+            rows="1"
+          ></textarea>
+          <button
+            class="action accent composer-send"
+            id="composer-send"
+            type="button"
+            data-i18n="composer_send"
+          >
+            发送
+          </button>
+        </div>
+      </section>
+
+      <section class="history-panel hidden" id="history-panel">
+        <div class="insert-head">
+          <div class="insert-head-copy">
+            <h2 data-i18n="history_title">会话记录</h2>
+            <p id="history-summary">镜像当前 CLI 缓冲区内容。</p>
+          </div>
+          <button class="meta-action" id="close-history" type="button" data-i18n="close_panel">
+            收起
+          </button>
+        </div>
+        <pre id="history-log" class="history-log"></pre>
+      </section>
+
+      <section class="shortcut-panel hidden" id="shortcut-panel">
+        <div class="insert-head">
+          <div class="insert-head-copy">
+            <h2 data-i18n="shortcuts_title">快捷语</h2>
+            <p data-i18n="shortcuts_summary">把常用提示词收在一起。</p>
+          </div>
+          <button class="meta-action" id="close-shortcuts" type="button" data-i18n="close_panel">
+            收起
+          </button>
+        </div>
+        <div class="shortcut-grid" id="shortcut-grid"></div>
+      </section>
+
+      <div class="control-stack">
+        <section class="toolbar toolbar-primary">
+          <button class="action accent control-esc" data-send="esc">Esc</button>
+          <button class="action accent control-enter" data-send="enter">Enter</button>
+          <div class="direction-cluster" data-i18n-aria-label="arrow_keys" aria-label="方向键">
+            <button class="pad-key direction-button dir-up" data-send="up">↑</button>
+            <button class="pad-key direction-button dir-left" data-send="left">←</button>
+            <button class="pad-key direction-button dir-down" data-send="down">↓</button>
+            <button class="pad-key direction-button dir-right" data-send="right">→</button>
+          </div>
+          <button
+            class="action control-shortcuts"
+            id="toggle-shortcuts"
+            type="button"
+            data-i18n="shortcuts_title"
+          >
+            快捷语
+          </button>
+          <button
+            class="action danger control-restart control-wide"
+            id="restart-session"
+            data-i18n="restart_codex"
+          >
+            重启 Codex
+          </button>
+        </section>
+        <section class="toolbar toolbar-secondary">
+          <button class="action" id="toggle-history" data-i18n="history_button">记录</button>
+          <button class="pad-key" data-send="home">Home</button>
+          <button class="pad-key" data-send="end">End</button>
+          <button class="pad-key" data-send="page_up">PgUp</button>
+          <button class="pad-key" data-send="page_down">PgDn</button>
+          <button class="action" data-send="insert_key">Ins</button>
+          <button class="action" data-send="tab">Tab</button>
+          <button class="action" data-send="ctrl_c">Ctrl+C</button>
+          <button class="action" data-send="ctrl_l">Ctrl+L</button>
+        </section>
+      </div>
+
+      <div class="bottom-stack">
+        <header class="topbar">
+          <div>
+            <p class="eyebrow" data-i18n="eyebrow_title">LAN Remote Terminal</p>
+            <h1 data-i18n="page_heading">Codex Remote</h1>
+          </div>
+        </header>
+
+        <footer class="status-footer">
+          <div class="status-pill" id="status-pill">
+            <span class="status-dot"></span>
+            <span id="status-text" data-i18n="status_connecting">连接中</span>
+          </div>
+        </footer>
+      </div>
+    </main>
+
+    <script src="/vendor/xterm.js"></script>
+    <script src="/vendor/addon-fit.js"></script>
+    <script src="/app.js"></script>
+  </body>
+</html>

@@ -1,0 +1,37 @@
+{
+  "items": [
+    {
+      "id": "continue",
+      "label": {
+        "zh": "继续",
+        "en": "Continue"
+      },
+      "prompt": {
+        "zh": "继续",
+        "en": "continue"
+      }
+    },
+    {
+      "id": "rollback",
+      "label": {
+        "zh": "回滚",
+        "en": "Rollback"
+      },
+      "prompt": {
+        "zh": "回滚",
+        "en": "rollback"
+      }
+    },
+    {
+      "id": "plain_words",
+      "label": {
+        "zh": "说人话",
+        "en": "Plainly"
+      },
+      "prompt": {
+        "zh": "说人话",
+        "en": "say it plainly"
+      }
+    }
+  ]
+}
